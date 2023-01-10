@@ -8,11 +8,12 @@ public class KeyValue<KeyType, ValueType> {
     }
 
     public KeyType getKey() {
-        // TODO - Implement method
+        return null; // TODO - Implement method
+
     }
 
     public ValueType getValue() {
-        // TODO - Implement method
+        return null; // TODO - Implement method
     }
 
     public void setKey(KeyType key) {
