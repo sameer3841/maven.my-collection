@@ -1,12 +1,10 @@
 package com.github.curriculeon.myset;
 
-import com.github.curriculeon.MyArrayList;
+import com.github.curriculeon.ImportChecker;
 import com.github.curriculeon.MyCollectionInterface;
 import com.github.curriculeon.MySet;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Date;
 
 /**
  * @author leonhunter
@@ -17,6 +15,7 @@ public class RemoveByIndex {
     //given
     private <SomeType> void test(int indexOfElementToRemove, SomeType[] valuesToBePopulatedWith, SomeType[] expectedElementSequence) {
         MySet<SomeType> myList = new MySet<>(valuesToBePopulatedWith);
+        ImportChecker.scanClass(myList.getClass());
         MyCollectionInterface<SomeType> myCollection = (MyCollectionInterface<SomeType>) myList;
 
         // given elements have been added to collection

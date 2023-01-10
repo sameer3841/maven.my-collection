@@ -1,5 +1,6 @@
 package com.github.curriculeon.mymap;
 
+import com.github.curriculeon.ImportChecker;
 import com.github.curriculeon.MyMap;
 import com.github.curriculeon.MyMapInterface;
 import org.junit.Assert;
@@ -13,6 +14,7 @@ public class PutTest {
     // given
     private <KeyType, ValueType> void test(KeyType key, ValueType value) {
         MyMap<KeyType, ValueType> myMap = new MyMap<>();
+        ImportChecker.scanClass(myMap.getClass());
         MyMapInterface<KeyType, ValueType> myMapInterface = (MyMapInterface)myMap;
 
         // when

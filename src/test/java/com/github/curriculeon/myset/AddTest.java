@@ -1,5 +1,6 @@
 package com.github.curriculeon.myset;
 
+import com.github.curriculeon.ImportChecker;
 import com.github.curriculeon.MyCollectionInterface;
 import com.github.curriculeon.MySet;
 import org.junit.Assert;
@@ -16,6 +17,7 @@ public class AddTest {
     //given
     private <SomeType> void test(SomeType[] valuesToBePopulatedWith, int expectedSize) {
         MySet<SomeType> myList = new MySet<>();
+        ImportChecker.scanClass(myList.getClass());
         MyCollectionInterface<SomeType> myCollection = (MyCollectionInterface<SomeType>) myList;
 
         for (SomeType someValue : valuesToBePopulatedWith) {

@@ -1,12 +1,10 @@
 package com.github.curriculeon.myset;
 
-import com.github.curriculeon.MyArrayList;
+import com.github.curriculeon.ImportChecker;
 import com.github.curriculeon.MyCollectionInterface;
 import com.github.curriculeon.MySet;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Date;
 
 
 /**
@@ -18,6 +16,7 @@ public class GetTest {
     //given
     private <SomeType> void test(SomeType... valuesToBePopulatedWith) {
         MySet<SomeType> myList = new MySet<>(valuesToBePopulatedWith);
+        ImportChecker.scanClass(myList.getClass());
         MyCollectionInterface<SomeType> myCollection = (MyCollectionInterface<SomeType>) myList;
 
         for (int currentIndex = 0; currentIndex < valuesToBePopulatedWith.length; currentIndex++) {

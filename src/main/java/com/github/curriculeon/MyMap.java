@@ -1,4 +1,4 @@
 package com.github.curriculeon;
 
-public class MyMap<_, __> {
+public class MyMap<KeyType, ValueType> {
 }

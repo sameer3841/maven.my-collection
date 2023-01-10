@@ -1,5 +1,6 @@
 package com.github.curriculeon.myarraylist;
 
+import com.github.curriculeon.ImportChecker;
 import com.github.curriculeon.MyArrayList;
 import com.github.curriculeon.MyCollectionInterface;
 import org.junit.Assert;
@@ -16,6 +17,7 @@ public class RemoveByIndex {
     //given
     private <SomeType> void test(int indexOfElementToRemove, SomeType[] valuesToBePopulatedWith, SomeType[] expectedElementSequence) {
         MyArrayList<SomeType> myList = new MyArrayList<>();
+        ImportChecker.scanClass(myList.getClass());
         MyCollectionInterface<SomeType> myCollection = (MyCollectionInterface<SomeType>) myList;
 
         // given elements have been added to collection

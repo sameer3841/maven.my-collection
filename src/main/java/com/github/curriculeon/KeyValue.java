@@ -2,16 +2,16 @@ package com.github.curriculeon;
 
 import javax.naming.OperationNotSupportedException;
 
-public class KeyValue<_, __> {
+public class KeyValue<KeyType, ValueType> {
     public KeyValue(Object key, Object value) {
         throw new RuntimeException(new OperationNotSupportedException("Method not yet implemented")); // TODO
     }
 
-    public _ getKey() {
+    public KeyType getKey() {
         throw new RuntimeException(new OperationNotSupportedException("Method not yet implemented")); // TODO
     }
 
-    public __ getValue() {
+    public ValueType getValue() {
         throw new RuntimeException(new OperationNotSupportedException("Method not yet implemented")); // TODO
     }
 

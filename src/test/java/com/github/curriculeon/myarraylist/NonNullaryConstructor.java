@@ -1,5 +1,6 @@
 package com.github.curriculeon.myarraylist;
 
+import com.github.curriculeon.ImportChecker;
 import com.github.curriculeon.MyArrayList;
 import com.github.curriculeon.MyCollectionInterface;
 import org.junit.Assert;
@@ -16,6 +17,7 @@ public class NonNullaryConstructor {
     //given
     private <SomeType> void test(SomeType... valuesToBePopulatedWith) {
         MyArrayList<SomeType> myList = new MyArrayList<>(valuesToBePopulatedWith);
+        ImportChecker.scanClass(myList.getClass());
         MyCollectionInterface<SomeType> myCollection = (MyCollectionInterface<SomeType>) myList;
 
         for (SomeType someValue : valuesToBePopulatedWith) {

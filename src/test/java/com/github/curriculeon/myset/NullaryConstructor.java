@@ -1,5 +1,6 @@
 package com.github.curriculeon.myset;
 
+import com.github.curriculeon.ImportChecker;
 import com.github.curriculeon.MyArrayList;
 import com.github.curriculeon.MyCollectionInterface;
 import com.github.curriculeon.MySet;
@@ -19,6 +20,7 @@ public class NullaryConstructor {
     public void testPolymorphism() {
         //given
         MySet<?> myList = new MySet<>();
+        ImportChecker.scanClass(myList.getClass());
 
         // when
         Boolean isInstanceOfMyList = (Object)myList instanceof MyArrayList;
