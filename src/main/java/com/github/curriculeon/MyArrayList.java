@@ -1,12 +1,9 @@
 package com.github.curriculeon;
 
-import javafx.util.Pair;
-
-public class MyArrayList<_> {
+public class MyArrayList<SomeType> {
     public MyArrayList() {
-        Pair
     }
 
-    public MyArrayList(Object[] valuesToBePopulatedWith) {
+    public MyArrayList(SomeType[] valuesToBePopulatedWith) {
     }
 }
