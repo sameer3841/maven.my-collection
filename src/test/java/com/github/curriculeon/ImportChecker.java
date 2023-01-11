@@ -35,11 +35,13 @@ public class ImportChecker {
         scanClass(clazz, "java.util");
     }
 
-    public static void scanClass(Class<?> someClass, String forbiddenString) {
+    public static void scanClass(Class<?> someClass, String... forbiddenStrings) {
         URL url = someClass.getResource(someClass.getSimpleName() + ".class");
         try {
             Path classPath = Paths.get(url.toURI());
-            scanClass(classPath, forbiddenString);
+            for (String forbiddenString : forbiddenStrings) {
+                scanClass(classPath, forbiddenString);
+            }
         } catch (final URISyntaxException e) {
             throw new RuntimeException(e);
         }
