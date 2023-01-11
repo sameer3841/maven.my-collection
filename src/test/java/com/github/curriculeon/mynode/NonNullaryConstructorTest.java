@@ -42,7 +42,6 @@ public class NonNullaryConstructorTest {
         // Act
         MyNode<String> next = new MyNode<>(null, node);
         node.setNext(next);
-
     }
 
 }
