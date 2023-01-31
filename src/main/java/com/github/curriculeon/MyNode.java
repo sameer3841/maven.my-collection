@@ -8,23 +8,19 @@ public class MyNode<SomeType> {
     }
 
     public MyNode(SomeType data, MyNode<SomeType> next) {
-        this.data = data;
-        this.next = next;
     }
 
     public SomeType getData() {
-        return data;
+        return null;
     }
 
     public void setData(SomeType data) {
-        this.data = data;
     }
 
     public MyNode<SomeType> getNext() {
-        return next;
+        return null;
     }
 
     public void setNext(MyNode<SomeType> next) {
-        this.next = next;
     }
 }
