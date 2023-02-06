@@ -13,7 +13,6 @@ public class KeyValue<KeyType, ValueType> {
 
     public KeyType getKey() {
         return key;
-
     }
 
     public ValueType getValue() {
