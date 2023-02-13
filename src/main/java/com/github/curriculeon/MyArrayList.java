@@ -15,7 +15,9 @@ public class MyArrayList<SomeType extends Object>  implements MyCollectionInterf
     }
 
     public MyArrayList(SomeType[] valuesToBePopulatedWith) {
-        this.myArrayList = valuesToBePopulatedWith;
+        myArrayList = (SomeType[]) new Object[valuesToBePopulatedWith.length];
+        for(int i = 0; i < valuesToBePopulatedWith.length; i++) 
+            myArrayList[i] = valuesToBePopulatedWith[i];
     }
 
     @Override
@@ -72,7 +74,8 @@ public class MyArrayList<SomeType extends Object>  implements MyCollectionInterf
     @Override
     public SomeType get(int indexOfElement) {
         // TODO Auto-generated method stub
-        if(indexOfElement < myArrayList.length && indexOfElement > -1) return this.myArrayList[indexOfElement];
+        if(indexOfElement < myArrayList.length && indexOfElement > -1 && myArrayList[indexOfElement] != null)
+            return this.myArrayList[indexOfElement];
         return null;
     }
 
