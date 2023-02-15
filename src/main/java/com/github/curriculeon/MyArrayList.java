@@ -10,14 +10,14 @@ public class MyArrayList<SomeType extends Object>  implements MyCollectionInterf
 
 
     public MyArrayList() {
-        myArrayList = (SomeType[]) new Object[10];
-        length = 0;
+        myArrayList = (SomeType[]) new Object[0];
+        length = myArrayList.length;
     }
 
     public MyArrayList(SomeType[] valuesToBePopulatedWith) {
         myArrayList = (SomeType[]) new Object[valuesToBePopulatedWith.length];
-        for(int i = 0; i < valuesToBePopulatedWith.length; i++) 
-            myArrayList[i] = valuesToBePopulatedWith[i];
+        System.arraycopy(valuesToBePopulatedWith, 0, myArrayList, 0, valuesToBePopulatedWith.length);
+        length = myArrayList.length;
     }
 
     
@@ -57,21 +57,21 @@ public class MyArrayList<SomeType extends Object>  implements MyCollectionInterf
     @Override
     public void remove(int indexOfObjectToRemove) {
         // TODO Auto-generated method stub
-        SomeType[] tracker = (SomeType[]) new Object[myArrayList.length - 1];
+        SomeType[] array = (SomeType[]) new Object[myArrayList.length-1];
         int index = 0;
         for(int i = 0; i < myArrayList.length; i++)
-            if(i != indexOfObjectToRemove){
-                tracker[index] = myArrayList[i];
+            if (i != indexOfObjectToRemove) {
+                array[index] = myArrayList[i];
                 index++;
             }
-        myArrayList = tracker;
+        myArrayList = array;
         length--;
     }
 
     @Override
     public SomeType get(int indexOfElement) {
         // TODO Auto-generated method stub
-        if(indexOfElement < length && indexOfElement > -1)
+        if( indexOfElement > -1 && indexOfElement < length )
             return myArrayList[indexOfElement];
         return null;
     }

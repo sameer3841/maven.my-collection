@@ -29,6 +29,6 @@ public class MyNode<SomeType> {
 
     public void setNext(MyNode<SomeType> next) {
         if(next == this) 
-        this.next = next;
+            this.next = next;
     }
 }

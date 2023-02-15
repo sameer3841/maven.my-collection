@@ -3,7 +3,12 @@ package com.github.curriculeon;
 import java.util.Iterator;
 
 public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
+
+
+    MyNode<SomeType> node;
+
     public MyLinkedList() {
+
     }
 
     public MyLinkedList(SomeType... valuesToBePopulatedWith) {
