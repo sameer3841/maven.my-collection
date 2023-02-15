@@ -20,11 +20,7 @@ public class MyArrayList<SomeType extends Object>  implements MyCollectionInterf
             myArrayList[i] = valuesToBePopulatedWith[i];
     }
 
-    @Override
-    public Iterator iterator() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    
 
     @Override
     public void add(SomeType objectToAdd) {
@@ -69,13 +65,14 @@ public class MyArrayList<SomeType extends Object>  implements MyCollectionInterf
                 index++;
             }
         myArrayList = tracker;
+        length--;
     }
 
     @Override
     public SomeType get(int indexOfElement) {
         // TODO Auto-generated method stub
-        if(indexOfElement < myArrayList.length && indexOfElement > -1 && myArrayList[indexOfElement] != null)
-            return this.myArrayList[indexOfElement];
+        if(indexOfElement < length && indexOfElement > -1)
+            return myArrayList[indexOfElement];
         return null;
     }
 
@@ -89,7 +86,32 @@ public class MyArrayList<SomeType extends Object>  implements MyCollectionInterf
 
     @Override
     public Integer size() {
-        // TODO Auto-generated method stub
         return length;
+    }
+
+    @Override
+    public Iterator iterator() {
+        // TODO Auto-generated method stub
+        return new MyArrayListIterator<>(this);
+    }
+
+    public static class MyArrayListIterator<SomeType> implements Iterator<SomeType> {
+        private MyArrayList<SomeType> list;
+        private int currentIndex;
+
+        public MyArrayListIterator(MyArrayList<SomeType> list) {
+            this.list = list;
+            this.currentIndex = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < list.size();
+        }
+
+        @Override
+        public SomeType next() {
+            return list.get(currentIndex++);
+        }
     }
 }
