@@ -4,8 +4,7 @@ import java.util.Iterator;
 
 public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
 
-
-    MyNode<SomeType> node;
+    private MyNode<SomeType> head;
 
     public MyLinkedList() {
 

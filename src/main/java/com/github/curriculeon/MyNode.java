@@ -10,6 +10,10 @@ public class MyNode<SomeType> {
         setNext(null);
     }
 
+    public MyNode(SomeType data){
+        setData(data);
+    }
+
     public MyNode(SomeType data, MyNode<SomeType> next) {
         setData(data);
         setNext(next);
@@ -28,7 +32,8 @@ public class MyNode<SomeType> {
     }
 
     public void setNext(MyNode<SomeType> next) {
-        if(next == this) 
-            this.next = next;
+        if(next == this)
+            throw new IllegalArgumentException();
+        this.next = next;
     }
 }
