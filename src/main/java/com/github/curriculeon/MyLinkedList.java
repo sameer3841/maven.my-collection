@@ -14,9 +14,8 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
 
     @SafeVarargs
     public MyLinkedList(SomeType... valuesToBePopulatedWith) {
-        for (SomeType someType : valuesToBePopulatedWith) {
+        for (SomeType someType : valuesToBePopulatedWith)
             add(someType);
-        }
         length = valuesToBePopulatedWith.length;
     }
 
@@ -32,13 +31,11 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
         MyNode<SomeType> node = head;
         if(node.getData() == null) node.setData(objectToAdd);
         else {
-            while (node.getNext() != null && node.hasNext()) {
-                node = node.getNext();
-            }
+            while (node.getNext() != null && node.hasNext()) node = node.getNext();
             MyNode<SomeType> endNode = new MyNode<>(objectToAdd);
             node.setNext(endNode);
-            length++;
         }
+        length++;
     }
 
     @Override
@@ -70,8 +67,9 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
     public Boolean contains(SomeType objectToCheckFor) {
         // TODO Auto-generated method stub
         MyNode<SomeType> node = head;
-        while(node.getNext() != null && node.hasNext()){
-            if(node.getData() == objectToCheckFor) return true;
+        while(node != null){
+            SomeType dataCheck = node.getData();
+            if(dataCheck.equals(node)) return true;
             node = node.getNext();
         }
         return false;
