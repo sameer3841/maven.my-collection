@@ -36,4 +36,8 @@ public class MyNode<SomeType> {
             throw new IllegalArgumentException();
         this.next = next;
     }
+
+    public Boolean hasNext(){
+        return next != null;
+    }
 }

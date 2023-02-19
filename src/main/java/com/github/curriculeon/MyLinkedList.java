@@ -5,13 +5,19 @@ import java.util.Iterator;
 public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
 
     private MyNode<SomeType> head;
+    private int length;
 
     public MyLinkedList() {
-
+        head = new MyNode<>();
+        length = 0;
     }
 
+    @SafeVarargs
     public MyLinkedList(SomeType... valuesToBePopulatedWith) {
-
+        for (SomeType someType : valuesToBePopulatedWith) {
+            add(someType);
+        }
+        length = valuesToBePopulatedWith.length;
     }
 
     @Override
@@ -23,7 +29,16 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
     @Override
     public void add(SomeType objectToAdd) {
         // TODO Auto-generated method stub
-        
+        MyNode<SomeType> node = head;
+        if(node.getData() == null) node.setData(objectToAdd);
+        else {
+            while (node.getNext() != null && node.hasNext()) {
+                node = node.getNext();
+            }
+            MyNode<SomeType> endNode = new MyNode<>(objectToAdd);
+            node.setNext(endNode);
+            length++;
+        }
     }
 
     @Override
@@ -41,19 +56,31 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
     @Override
     public SomeType get(int indexOfElement) {
         // TODO Auto-generated method stub
+        if(indexOfElement > -1 && indexOfElement < length){
+            MyNode<SomeType> node = head;
+            for(int i = 1; i <=indexOfElement; i++){
+                node = node.getNext();
+            }
+            return node.getData();
+        }
         return null;
     }
 
     @Override
     public Boolean contains(SomeType objectToCheckFor) {
         // TODO Auto-generated method stub
-        return null;
+        MyNode<SomeType> node = head;
+        while(node.getNext() != null && node.hasNext()){
+            if(node.getData() == objectToCheckFor) return true;
+            node = node.getNext();
+        }
+        return false;
     }
 
     @Override
     public Integer size() {
         // TODO Auto-generated method stub
-        return null;
+        return length;
     }
 
     private static class MyLinkedListIterator<SomeType> implements Iterator<SomeType> {
