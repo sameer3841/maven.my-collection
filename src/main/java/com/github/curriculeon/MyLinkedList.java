@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
 
-    private MyNode<SomeType> head;
+    private final MyNode<SomeType> head;
     private int length;
 
     public MyLinkedList() {
@@ -14,6 +14,7 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
 
     @SafeVarargs
     public MyLinkedList(SomeType... valuesToBePopulatedWith) {
+        head = new MyNode<>();
         for (SomeType someType : valuesToBePopulatedWith)
             add(someType);
         length = valuesToBePopulatedWith.length;
@@ -22,7 +23,7 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
     @Override
     public Iterator<SomeType> iterator() {
         // TODO Auto-generated method stub
-        return null;
+        return new MyLinkedList.MyLinkedListIterator<>(this);
     }
 
     @Override
@@ -41,13 +42,22 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
     @Override
     public void remove(SomeType objectToRemove) {
         // TODO Auto-generated method stub
-        
+        MyNode<SomeType> previous = head;
+        MyNode<SomeType> current = head.getNext();
+        while(current.getNext() != null){
+            previous = current;
+            current = current.getNext();
+
+        }
+        if(current.getData().equals(objectToRemove))
+            previous.setNext(null);
+
     }
 
     @Override
     public void remove(int indexOfObjectToRemove) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -55,9 +65,8 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
         // TODO Auto-generated method stub
         if(indexOfElement > -1 && indexOfElement < length){
             MyNode<SomeType> node = head;
-            for(int i = 1; i <=indexOfElement; i++){
+            for(int i = 0; i < indexOfElement; i++)
                 node = node.getNext();
-            }
             return node.getData();
         }
         return null;
@@ -82,7 +91,7 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
     }
 
     private static class MyLinkedListIterator<SomeType> implements Iterator<SomeType> {
-        private MyLinkedList<SomeType> list;
+        private final MyLinkedList<SomeType> list;
         private MyNode<SomeType> currentNode;
 
         public MyLinkedListIterator(MyLinkedList<SomeType> list) {
