@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
 
-    private final MyNode<SomeType> head;
+    private MyNode<SomeType> head;
     private int length;
 
     public MyLinkedList() {
@@ -42,22 +42,36 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
     @Override
     public void remove(SomeType objectToRemove) {
         // TODO Auto-generated method stub
-        MyNode<SomeType> previous = head;
-        MyNode<SomeType> current = head.getNext();
-        while(current.getNext() != null){
-            previous = current;
-            current = current.getNext();
-
+        MyNode<SomeType> current = head;
+        SomeType headVal = current.getData();
+        if(headVal.equals(objectToRemove)){
+            head = current.getNext();
+            return;
         }
-        if(current.getData().equals(objectToRemove))
-            previous.setNext(null);
-
+        while(current.hasNext()){
+            MyNode<SomeType> next = current.getNext();
+            SomeType nextVal = current.getNext().getData();
+            if(nextVal.equals(objectToRemove)){
+                MyNode<SomeType> swapNode = next.getNext();
+                current.setNext(swapNode);
+                return;
+            }
+            current = next;
+        }
     }
 
     @Override
     public void remove(int indexOfObjectToRemove) {
         // TODO Auto-generated method stub
 
+        MyNode<SomeType> prev = null;
+        MyNode<SomeType> current = head;
+        for(int i = 0; i < indexOfObjectToRemove; i++){
+            prev = current;
+            current = current.getNext();
+        }
+        prev.setNext(current.getNext());
+        length--;
     }
 
     @Override
@@ -91,11 +105,9 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
     }
 
     private static class MyLinkedListIterator<SomeType> implements Iterator<SomeType> {
-        private final MyLinkedList<SomeType> list;
         private MyNode<SomeType> currentNode;
 
         public MyLinkedListIterator(MyLinkedList<SomeType> list) {
-            this.list = list;
             this.currentNode = new MyNode<>();
             this.currentNode.setData(list.get(0)); // this is the head
         }
