@@ -69,7 +69,7 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
         MyNode<SomeType> node = head;
         while(node != null){
             SomeType dataCheck = node.getData();
-            if(dataCheck.equals(node)) return true;
+            if(dataCheck.equals(objectToCheckFor)) return true;
             node = node.getNext();
         }
         return false;
