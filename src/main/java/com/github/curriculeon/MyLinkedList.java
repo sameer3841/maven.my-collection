@@ -41,37 +41,35 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
 
     @Override
     public void remove(SomeType objectToRemove) {
-        // TODO Auto-generated method stub
-        MyNode<SomeType> current = head;
-        SomeType headVal = current.getData();
-        if(headVal.equals(objectToRemove)){
-            head = current.getNext();
+        if (head==null){
+            System.out.println("The inputted value does not exist within the list.");
+            return;
+        } else if (head.getData() == objectToRemove) {
+            head.setData(null);
+            length--;
             return;
         }
-        while(current.hasNext()){
-            MyNode<SomeType> next = current.getNext();
-            SomeType nextVal = current.getNext().getData();
-            if(nextVal.equals(objectToRemove)){
-                MyNode<SomeType> swapNode = next.getNext();
-                current.setNext(swapNode);
-                return;
+        MyNode<SomeType> node = head;
+        while (node.getNext() != null && node.hasNext()) {
+            if (node.getNext().getData() == objectToRemove) {
+                MyNode<SomeType> nextNode;
+                nextNode = node.getNext().getNext();
+                node.setNext(nextNode);
+                length--;
             }
-            current = next;
+            node = node.getNext();
         }
     }
 
     @Override
     public void remove(int indexOfObjectToRemove) {
-        // TODO Auto-generated method stub
-
-        MyNode<SomeType> prev = null;
-        MyNode<SomeType> current = head;
-        for(int i = 0; i < indexOfObjectToRemove; i++){
-            prev = current;
-            current = current.getNext();
+        if(indexOfObjectToRemove > -1 && indexOfObjectToRemove < length) {
+            MyNode<SomeType> node = head;
+            for (int i = 0; i < indexOfObjectToRemove; i++) {
+                node = node.getNext();
+            }
+            remove(node.getData());
         }
-        prev.setNext(current.getNext());
-        length--;
     }
 
     @Override
@@ -89,11 +87,13 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
     @Override
     public Boolean contains(SomeType objectToCheckFor) {
         // TODO Auto-generated method stub
-        MyNode<SomeType> node = head;
-        while(node != null){
-            SomeType dataCheck = node.getData();
-            if(dataCheck.equals(objectToCheckFor)) return true;
-            node = node.getNext();
+        if(head.getData() != null) {
+            MyNode<SomeType> node = head;
+            while (node != null) {
+                SomeType dataCheck = node.getData();
+                if (dataCheck.equals(objectToCheckFor)) return true;
+                node = node.getNext();
+            }
         }
         return false;
     }
