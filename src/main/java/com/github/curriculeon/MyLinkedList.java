@@ -30,22 +30,29 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
     public void add(SomeType objectToAdd) {
         // TODO Auto-generated method stub
         MyNode<SomeType> node = head;
-        if(node.getData() == null) node.setData(objectToAdd);
-        else {
-            while (node.getNext() != null && node.hasNext()) node = node.getNext();
-            MyNode<SomeType> endNode = new MyNode<>(objectToAdd);
-            node.setNext(endNode);
+        if(node != null) {
+            if (node.getData() == null) {
+                node.setData(objectToAdd);
+            } else {
+                while (node.getNext() != null && node.hasNext()) node = node.getNext();
+                MyNode<SomeType> endNode = new MyNode<>(objectToAdd);
+                node.setNext(endNode);
+            }
+            length++;
         }
-        length++;
     }
 
     @Override
     public void remove(SomeType objectToRemove) {
         if (head==null){
-            System.out.println("The inputted value does not exist within the list.");
             return;
         } else if (head.getData() == objectToRemove) {
-            head.setData(null);
+            if(!head.hasNext()){
+                head.setData(null);
+                length--;
+                return;
+            }
+            head = head.getNext();
             length--;
             return;
         }
@@ -86,8 +93,9 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
 
     @Override
     public Boolean contains(SomeType objectToCheckFor) {
-        // TODO Auto-generated method stub
-        if(head.getData() != null) {
+        if(!head.hasNext()) {
+            return head.getData() == objectToCheckFor;
+        } else {
             MyNode<SomeType> node = head;
             while (node != null) {
                 SomeType dataCheck = node.getData();

@@ -21,7 +21,6 @@ public class AddTest {
         MyCollectionInterface<SomeType> myCollection = (MyCollectionInterface<SomeType>) myList;
 
         for (SomeType someValue : valuesToBePopulatedWith) {
-            // when
             myCollection.add(someValue);
 
             // then
