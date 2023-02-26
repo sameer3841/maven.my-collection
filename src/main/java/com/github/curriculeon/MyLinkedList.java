@@ -63,6 +63,7 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
                 nextNode = node.getNext().getNext();
                 node.setNext(nextNode);
                 length--;
+                return;
             }
             node = node.getNext();
         }
