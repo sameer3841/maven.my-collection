@@ -57,10 +57,15 @@ public class MyArrayList<SomeType extends Object>  implements MyCollectionInterf
     @Override
     public void remove(int indexOfObjectToRemove) {
         // TODO Auto-generated method stub
-        if(indexOfObjectToRemove > -1 && indexOfObjectToRemove < length){
-            SomeType someType = myArrayList[indexOfObjectToRemove];
-            remove(someType);
-        }
+        SomeType[] array = (SomeType[]) new Object[myArrayList.length-1];
+        int index = 0;
+        for(int i = 0; i < myArrayList.length; i++)
+            if (i != indexOfObjectToRemove) {
+                array[index] = myArrayList[i];
+                index++;
+            }
+        myArrayList = array;
+        length--;
     }
 
     @Override

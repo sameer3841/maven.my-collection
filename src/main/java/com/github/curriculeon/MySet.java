@@ -12,9 +12,8 @@ public class MySet<SomeType> implements MyCollectionInterface<SomeType>{
     }
 
     public MySet(SomeType[] valuesToBePopulatedWith) {
-        for(SomeType someType: valuesToBePopulatedWith){
+        for(SomeType someType: valuesToBePopulatedWith)
             add(someType);
-        }
         length = valuesToBePopulatedWith.length;
     }
 
@@ -40,10 +39,9 @@ public class MySet<SomeType> implements MyCollectionInterface<SomeType>{
             if (someType != objectToRemove) {
                 track[tracker] = someType;
                 tracker++;
-            }
+            } else length--;
         }
         mySet = track;
-        length--;
     }
 
     @Override
