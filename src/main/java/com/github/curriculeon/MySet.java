@@ -13,6 +13,7 @@ public class MySet<SomeType extends Object> implements MyCollectionInterface<Som
     }
 
     public MySet(SomeType[] valuesToBePopulatedWith) {
+        mySet = (SomeType[]) new Object[0];
         for(SomeType someType: valuesToBePopulatedWith){
             add(someType);
         }
@@ -34,12 +35,25 @@ public class MySet<SomeType extends Object> implements MyCollectionInterface<Som
 
     @Override
     public void remove(SomeType objectToRemove) {
-
+        SomeType[] track = (SomeType[]) new Object[mySet.length-1];
+        int tracker = 0;
+        for(SomeType someType : mySet) {
+            if (someType == null) continue;
+            if (someType != objectToRemove) {
+                track[tracker] = someType;
+                tracker++;
+            }
+        }
+        mySet = track;
+        length--;
     }
 
     @Override
     public void remove(int indexOfObjectToRemove) {
-
+        if(indexOfObjectToRemove > -1 && indexOfObjectToRemove < length){
+            SomeType object = mySet[indexOfObjectToRemove];
+            remove(object);
+        }
     }
 
     @Override
@@ -51,6 +65,7 @@ public class MySet<SomeType extends Object> implements MyCollectionInterface<Som
 
     @Override
     public Boolean contains(SomeType objectToCheckFor) {
+        if(length == 0) return false;
         for(SomeType tracker : mySet)
             if(tracker.equals(objectToCheckFor)) return true;
         return false;
