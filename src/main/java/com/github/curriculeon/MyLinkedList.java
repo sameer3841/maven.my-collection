@@ -22,18 +22,15 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
 
     @Override
     public Iterator<SomeType> iterator() {
-        // TODO Auto-generated method stub
         return new MyLinkedList.MyLinkedListIterator<>(this);
     }
 
     @Override
     public void add(SomeType objectToAdd) {
-        // TODO Auto-generated method stub
         MyNode<SomeType> node = head;
         if(node != null) {
-            if (node.getData() == null) {
-                node.setData(objectToAdd);
-            } else {
+            if (node.getData() == null) node.setData(objectToAdd);
+            else {
                 while (node.getNext() != null && node.hasNext()) node = node.getNext();
                 MyNode<SomeType> endNode = new MyNode<>(objectToAdd);
                 node.setNext(endNode);
@@ -44,9 +41,8 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
 
     @Override
     public void remove(SomeType objectToRemove) {
-        if (head==null){
-            return;
-        } else if (head.getData() == objectToRemove) {
+        if (head==null) return;
+        else if (head.getData() == objectToRemove) {
             if(!head.hasNext()){
                 head.setData(null);
                 length--;
@@ -73,20 +69,16 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
     public void remove(int indexOfObjectToRemove) {
         if(indexOfObjectToRemove > -1 && indexOfObjectToRemove < length) {
             MyNode<SomeType> node = head;
-            for (int i = 0; i < indexOfObjectToRemove; i++) {
-                node = node.getNext();
-            }
+            for (int i = 0; i < indexOfObjectToRemove; i++) node = node.getNext();
             remove(node.getData());
         }
     }
 
     @Override
     public SomeType get(int indexOfElement) {
-        // TODO Auto-generated method stub
         if(indexOfElement > -1 && indexOfElement < length){
             MyNode<SomeType> node = head;
-            for(int i = 0; i < indexOfElement; i++)
-                node = node.getNext();
+            for(int i = 0; i < indexOfElement; i++) node = node.getNext();
             return node.getData();
         }
         return null;
@@ -94,9 +86,8 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
 
     @Override
     public Boolean contains(SomeType objectToCheckFor) {
-        if(!head.hasNext()) {
-            return head.getData() == objectToCheckFor;
-        } else {
+        if(!head.hasNext()) return head.getData() == objectToCheckFor;
+        else {
             MyNode<SomeType> node = head;
             while (node != null) {
                 SomeType dataCheck = node.getData();
@@ -109,7 +100,6 @@ public class MyLinkedList<SomeType> implements MyCollectionInterface<SomeType>{
 
     @Override
     public Integer size() {
-        // TODO Auto-generated method stub
         return length;
     }
 
