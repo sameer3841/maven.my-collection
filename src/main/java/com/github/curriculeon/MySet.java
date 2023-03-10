@@ -2,18 +2,16 @@ package com.github.curriculeon;
 
 import java.util.Iterator;
 
-public class MySet<SomeType extends Object> implements MyCollectionInterface<SomeType>{
+public class MySet<SomeType> implements MyCollectionInterface<SomeType>{
 
-    private SomeType[] mySet;
+    private SomeType[] mySet = (SomeType[]) new Object[0];
     private int length;
 
     public MySet() {
-        mySet = (SomeType[]) new Object[0];
         length = 0;
     }
 
     public MySet(SomeType[] valuesToBePopulatedWith) {
-        mySet = (SomeType[]) new Object[0];
         for(SomeType someType: valuesToBePopulatedWith){
             add(someType);
         }
@@ -72,9 +70,7 @@ public class MySet<SomeType extends Object> implements MyCollectionInterface<Som
     }
 
     @Override
-    public Integer size() {
-        return length;
-    }
+    public Integer size() {return length;}
 
     @Override
     public Iterator<SomeType> iterator() {
