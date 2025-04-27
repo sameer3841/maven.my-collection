@@ -24,11 +24,11 @@ To try out this project, follow these steps:
 1. Navigate to a directory where you want to store the project.
 2. Clone the repository using the following command:
    ```sh
-   git clone https://github.com/MYUSERNAME/NAMEOFPROJECT.git
+   git clone https://github.com/sameer3841/maven.my-collection.git
    ```
 3. Navigate into the project directory:
    ```sh
-   cd NAMEOFPROJECT
+   cd maven.my-collection
    ```
 4. Open the project in your preferred IDE and ensure that the test cases execute properly.
 
